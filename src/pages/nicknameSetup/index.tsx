@@ -5,16 +5,20 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AvatarSwipeOptionList from '../../components/avatarSwipeOptionList';
 import NicknameInputField from '../../components/nicknameInputField';
 import LoginButton from '../../components/loginButton';
 import { useNavigation } from '@react-navigation/native';
+import { startTCPServer } from '../../services/startTCPServer';
+import { startTCPClient } from '../../services/startTCPClient';
+import { ServerAddress } from '../../types/ServerAddress';
 
 function NicknameSetupPage(): JSX.Element {
   const [selectedAvatarId, setSelectedAvatarId] = useState<string | null>(null);
   const [nickname, setNickname] = useState('');
+  const [serverStarted, setServerStarted] = useState(false); // Novo estado para controlar o servidor
 
   const navigation = useNavigation();
 
@@ -26,19 +30,35 @@ function NicknameSetupPage(): JSX.Element {
     setNickname(newNickname);
   };
 
-  const handleLoginButtonPress = () => {
+  const handleLoginButtonPress = async () => {
     if (selectedAvatarId && nickname) {
-      // Perform actions when the login button is clicked
       console.log('Login button clicked!');
       console.log('Selected Avatar ID:', selectedAvatarId);
       console.log('Nickname:', nickname);
+  
+      let server: ServerAddress | null = null;
+  
+      if (!serverStarted) {
+        const serverAddress = await startTCPServer();
+        
+        if (serverAddress) {
+          server = serverAddress;
+          // Marcar o servidor como iniciado
+          setServerStarted(true);
+        }
+      }
+      
+      console.log('Server Address:', server);
 
-      navigation.navigate('UserRoom');
-      // Add your logic here, such as navigation or API calls
+      if (server) {
+        startTCPClient(server);
+      }
+  
+      // navigation.navigate('UserRoom');
     } else {
       console.log('Please select an avatar and provide a nickname.');
     }
-  };
+  };  
 
   return (
     <View style={styles.background}>
