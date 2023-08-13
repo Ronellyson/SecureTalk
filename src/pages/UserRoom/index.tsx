@@ -7,15 +7,23 @@
 
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 import LogoutButton from '../../components/logoutButton';
 import UserChatCardList from '../../components/UserChatCardList';
 
 function UserRoomPage(): JSX.Element {
+  const navigation = useNavigation(); // Initialize useNavigation
+
+  const handleLogoutButtonPress = () => {
+    console.log('Logout button clicked!');
+    
+    navigation.navigate('NicknameSetup');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <LogoutButton />
+        <LogoutButton onPress={handleLogoutButtonPress} />
       </View>
       <Text style={styles.sectionTitle}>Usuários Disponíveis</Text>
       <UserChatCardList />
@@ -36,13 +44,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 20,
   },
-  sectionTitle:{
+  sectionTitle: {
     color: 'white',
     fontSize: 32,
     fontWeight: 'bold',
     marginVertical: 20,
     textAlign: 'center',
-  }
+  },
 });
 
 export default UserRoomPage;

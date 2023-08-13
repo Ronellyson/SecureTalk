@@ -6,18 +6,21 @@
  */
 
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface LoginButtonProps {
   isActive: boolean;
+  onPress: () => void; // Add an onPress callback
 }
 
-function LoginButton({ isActive }: LoginButtonProps): JSX.Element {
+function LoginButton({ isActive, onPress }: LoginButtonProps): JSX.Element {
   return (
-    <View style={[styles.background, isActive ? styles.active : styles.disabled]}>
-      <Icon name="login" style={styles.icon} />
-    </View>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={[styles.background, isActive ? styles.active : styles.disabled]}>
+        <Icon name="login" style={styles.icon} />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -41,4 +44,3 @@ const styles = StyleSheet.create({
 });
 
 export default LoginButton;
-

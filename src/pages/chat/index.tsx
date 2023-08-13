@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ReceivedMessageWidget from '../../components/receivedMessageWidget';
 import SentMessageWidget from '../../components/sentMessageWidget';
 import MessageInputWidget from '../../components/messageInputWidget';
+import { useNavigation } from '@react-navigation/native';
 
 function ChatPage(): JSX.Element {
   const [messages, setMessages] = useState([
@@ -35,15 +36,25 @@ function ChatPage(): JSX.Element {
     { text: 'I\'ll have to borrow it from you.', received: false },
   ]);
 
+  const navigation = useNavigation();
+
   const handleSendMessage = (messageText: string) => {
     const newMessage = { text: messageText, received: false };
     setMessages([...messages, newMessage]);
   };
 
+  const handleBackButtonPress = () => {
+    // Perform actions when the back button is clicked
+    // You can navigate back to the previous screen
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.background}>
       <View style={styles.topBar}>
-        <Icon name="arrow-back" style={styles.icon} />
+        <TouchableOpacity onPress={handleBackButtonPress}>
+          <Icon name="arrow-back" style={styles.icon} />
+        </TouchableOpacity>
         <Icon name={"people"} style={styles.icon} />
         <View style={styles.nickNameContainer}>
           <Text style={styles.nickName}>egg</Text>
@@ -79,8 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingTop: 20, // Add padding to the top
+    paddingHorizontal: 10,
   },
   icon: {
     color: 'black',

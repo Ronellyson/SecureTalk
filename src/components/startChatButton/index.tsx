@@ -6,14 +6,20 @@
  */
 
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-function StartChatButton(): JSX.Element {
+interface StartChatButtonProps {
+  onPress: () => void; // Add an onPress callback
+}
+
+function StartChatButton({ onPress }: StartChatButtonProps): JSX.Element {
   return (
-    <View style={[styles.background]}>
-      <Icon name="chat" style={styles.icon} />
-    </View>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.background}>
+        <Icon name="chat" style={styles.icon} />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 

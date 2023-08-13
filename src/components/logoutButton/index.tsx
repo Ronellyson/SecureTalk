@@ -6,14 +6,20 @@
  */
 
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-function LogoutButton(): JSX.Element {
+interface LogoutButtonProps {
+  onPress: () => void; // Add an onPress callback
+}
+
+function LogoutButton({ onPress }: LogoutButtonProps): JSX.Element {
   return (
-    <View style={[styles.background]}>
-      <Icon name="logout" style={styles.icon} />
-    </View>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.background}>
+        <Icon name="logout" style={styles.icon} />
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -32,3 +38,4 @@ const styles = StyleSheet.create({
 });
 
 export default LogoutButton;
+
