@@ -30,6 +30,7 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer>
+      <StatusBar hidden />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {showNicknameSetup ? (
           <>

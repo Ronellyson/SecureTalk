@@ -27,8 +27,10 @@ export function startTCPClient(server: ServerAddress) {
   });
 
   client?.on('data', function(data) {
-    console.log('message was received', data);
-  });
+    // Convert received bytes back to string
+    const receivedMessage = data.toString('utf-8');
+    console.log('message was received', receivedMessage);
+  });  
 
   client?.on('error', function(error) {
     console.log(error);

@@ -21,7 +21,8 @@
     "react-native-screens": "^3.24.0",
     "react-native-swipe-gestures": "^1.0.5",
     "react-native-tcp-socket": "^6.0.6",
-    "react-native-vector-icons": "^10.0.0"
+    "react-native-vector-icons": "^10.0.0",
+    "stream-browserify": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
