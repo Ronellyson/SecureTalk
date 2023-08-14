@@ -1,5 +1,8 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# SecureTalk - Secure and Confidential Local Network Chat App
 
+SecureTalk is an innovative and privacy-focused communication application designed to provide a confidential channel for communication within a local network. Built using the TCP protocol and powered by React Native, SecureTalk ensures secure messaging by employing a robust encryption algorithm. Unlike traditional chat applications, SecureTalk operates on a unique peer-to-peer architecture, where each user acts as both a server and a client simultaneously.
+
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
